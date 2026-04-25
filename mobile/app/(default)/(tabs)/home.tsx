@@ -36,7 +36,7 @@ export default function Home() {
 
       
         <View className="flex-row justify-between items-center mb-4">
-          <Text className="text-2xl font-bold text-gray-800">
+          <Text className="text-2xl font-extrabold text-[#1877f2]">
             Feed
           </Text>
 

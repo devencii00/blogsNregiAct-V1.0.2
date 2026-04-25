@@ -16,7 +16,7 @@ export default function Register() {
   const { register } = useAuth();
 
   const [loading, setLoading] = useState(false);
-
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -75,7 +75,10 @@ export default function Register() {
         profile_image,
       });
 
-      router.replace("/login");
+      setStatus("success");
+      setTimeout(() => {
+        router.replace("/login");
+      }, 2000);
     } catch (e: any) {
       if (e.response?.status === 422) {
         setErrors(e.response.data.errors);
@@ -90,11 +93,13 @@ export default function Register() {
   return (
     <View className="flex-1 bg-white px-6 justify-center">
 
-      <Text className="text-2xl font-bold mb-6 text-gray-800">
+         <Text className="text-[26px] font-extrabold text-[#1877f2] tracking-[-0.5px] text-center pb-5">
         Create account
       </Text>
 
-     
+ 
+ 
+
       <View className="items-center mb-6">
         <TouchableOpacity
           onPress={pickImage}
@@ -182,19 +187,25 @@ export default function Register() {
         </View>
       </View>
 
+{status === "success" && (
+  <View className="bg-green-100 p-3 rounded-lg mb-4">
+    <Text className="text-green-600 text-center font-bold">
+      Account created successfully!
+    </Text>
+  </View>
+)}
       <TouchableOpacity
         onPress={handleRegistration}
         disabled={loading}
-        className={`h-12 rounded-xl items-center justify-center mt-6 ${
-          loading ? "bg-blue-300" : "bg-blue-600"
-        }`}
+        className={`h-12 rounded-xl items-center justify-center mt-6 ${loading ? "bg-blue-300" : "bg-blue-600"
+          }`}
       >
         <Text className="text-white font-bold">
           {loading ? "Creating account..." : "Create account"}
         </Text>
       </TouchableOpacity>
 
-  
+
       <Pressable onPress={() => router.navigate("/login")} className="mt-5">
         <Text className="text-blue-500 text-center">
           Back to Login

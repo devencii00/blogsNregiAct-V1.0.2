@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Pressable,
+  StyleSheet
 } from "react-native";
 import { router } from "expo-router";
 
@@ -51,10 +52,12 @@ export default function Login() {
   return (
     <View className="flex-1 bg-white px-6 justify-center">
 
-      <Text className="text-2xl font-bold mb-8 text-gray-800">
-        Log in to you account
-      </Text>
-
+      <Text className="text-[26px] font-extrabold text-[#1877f2] tracking-[-0.5px] text-center">
+    Login to your account
+  </Text>
+  <Text className="text-[14px] text-[#4b6cb7] mt-1 text-center pb-12">
+    Connect with bloggers around the world
+  </Text>
     
       <View className="mb-4">
         <Text className="text-gray-500 mb-1">Email</Text>
@@ -122,3 +125,19 @@ export default function Login() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+
+  title: {
+    fontSize: 26,
+    fontWeight: "800",
+    color: "#1877f2",
+    letterSpacing: -0.5,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#4b6cb7",
+    marginTop: 4,
+  },
+
+})

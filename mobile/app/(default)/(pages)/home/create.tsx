@@ -88,11 +88,11 @@ export default function Create() {
   };
 
   return (
-    <View className="flex-1 bg-gray-100 p-5">
+    <View className="flex-1 bg-white p-1200 pt-20">
       <View className="bg-white p-4 rounded-2xl gap-4">
 
-        <Text className="text-xl font-bold text-gray-800">
-          Create Blog
+        <Text className="text-xl font-extrabold text-[#1877f2] pb-5">
+          What's on your mind?
         </Text>
 
     

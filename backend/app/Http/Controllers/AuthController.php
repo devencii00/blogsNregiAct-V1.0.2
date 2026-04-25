@@ -18,13 +18,21 @@ class AuthController extends Controller
     {
     
         $request->validate([
-            'name' => ['required', 'string'],
+             'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/'],
             'email' => ['required', 'string', 'email', 'unique:users,email'],
             'profile_image' => ['required', 'image', 'mimes:jpg,jpeg,png'],
             'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
+        ],[
+        
+        'name.required' => 'Please input your name.',
+        'name.regex' => 'No other characters are allowed than letters and spaces.',
 
-        // make sure file exists
+        
+        'profile_image.image' => 'The attached file must be an image.',
+        'profile_image.mimes' => 'The attached image format is not supported (use jpg, jpeg, or png).',
+        'profile_image.required' => 'A profile image is required.',
+    ]);
+
         if (!$request->hasFile('profile_image')) {
             return response()->json([
                 'message' => 'No file received',
